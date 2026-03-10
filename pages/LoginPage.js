@@ -32,7 +32,7 @@ export class LoginPage {
     await this.page.goto('https://www.travelstart.co.za/');
   }
 
-  // Method 1: Login with Password
+  // Method 1: Login with email and Password
   async loginWithPassword(email, password) {
     await this.myAccountLink.click();
     await this.emailInput.fill(email);
