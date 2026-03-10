@@ -1,6 +1,6 @@
-export const testData = {
-  email: 'rajkumar02cpt@gmail.com',
+export const validTestData = {
   firstName: 'rajkumar',
   lastName: 'singamshetti',
+  email: 'rajkumar02cpt@gmail.com',
   password: 'Capetown@02'
 };

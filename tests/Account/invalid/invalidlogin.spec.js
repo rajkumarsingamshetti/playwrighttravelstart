@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { invalidTestData } from './invalidtestdata.js';
+import { invalidTestData } from '../../../test-data/invalidtestdata.js';
 
 test('test login with invalid credentials shows error message', async ({ page }) => {
   await page.goto('https://www.travelstart.co.za/');

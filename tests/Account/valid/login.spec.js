@@ -1,10 +1,18 @@
 import { test, expect } from '@playwright/test';
-import { testData } from './validtestData.js';
-import { LoginPage } from '../../../pages/loginpage.js';  
+import { LoginPage } from '../../../pages/LoginPage.js';
+import { validTestData } from '../../../test-data/validTestData.js';
 
-test('test login with valid credentials shows user greeting', async ({ page }) => {
+test('Login with valid credentials', async ({ page }) => {
 
   const loginPage = new LoginPage(page);
+
   await loginPage.goto();
-  await loginPage.loginWithPassword(testData.email, testData.password);
-  await expect(loginPage.userGreeting).toBeVisible({ timeout: 5000 });});
+
+  await loginPage.loginWithPassword(
+    validTestData.email,
+    validTestData.password
+  );
+await page.waitForTimeout(2000);
+  await expect(loginPage.userGreeting).toBeVisible();
+
+});

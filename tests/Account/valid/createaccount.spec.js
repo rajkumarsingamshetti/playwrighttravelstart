@@ -1,15 +1,29 @@
 import { test, expect } from '@playwright/test';
-import { testData } from './validtestData.js';
-test('test', async ({ page }) => {
+import { validTestData } from '../../../test-data/validTestData.js';
+
+test('create account', async ({ page }) => {
+
   await page.goto('https://www.travelstart.co.za/');
-  await page.locator('a').filter({ hasText: 'My Account' }).click();
+
+  // open account modal
+  await page.locator('a:has-text("My Account")').click();
+
+  // switch to signup tab
   await page.getByRole('tab', { name: 'Signup' }).click();
- 
-  await page.getByRole('textbox', { name: 'First Name' }).fill(testData.firstName);
-  await page.getByRole('textbox', { name: 'Surname' }).fill(testData.lastName);
-  await page.getByRole('textbox', { name: 'Email', exact: true }).fill(testData.email);
-  await page.getByRole('textbox', { name: 'Password' }).fill(testData.password);
+
+  // wait for form
+await page.getByRole('textbox', { name: 'First Name' }).waitFor();
+await page.getByRole('textbox', { name: 'First Name' }).fill(validTestData.firstName);
+await page.getByRole('textbox', { name: 'Surname' }).fill(validTestData.lastName);
+await page.getByRole('textbox', { name: 'Email', exact: true }).fill(validTestData.email);
+await page.getByRole('textbox', { name: 'Password' }).fill(validTestData.password);
+  // show password
   await page.locator('.showEye').first().click();
+
+  // accept terms
   await page.getByRole('checkbox').check();
+
+  // submit
   await page.getByRole('button', { name: 'Sign up' }).click();
+
 });
